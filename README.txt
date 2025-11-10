@@ -1,0 +1,1 @@
+Simple blog platform with users, posts, comments. Node backend, HTML frontend.
