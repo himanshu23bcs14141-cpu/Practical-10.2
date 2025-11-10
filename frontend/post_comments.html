@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><body>
+<h2>Post Comments</h2>
+<input id="pid" placeholder="Post ID"><button onclick="load()">Load</button>
+<ul id="list"></ul>
+<input id="uid" placeholder="User ID"><input id="text" placeholder="Comment">
+<button onclick="add()">Comment</button>
+<script>
+async function load(){
+  const r=await fetch('http://localhost:5000/posts/'+pid.value+'/comments');
+  const d=await r.json();
+  list.innerHTML=d.map(c=>`<li>${c.text}</li>`).join('');
+}
+async function add(){
+  await fetch('http://localhost:5000/comments',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({postId:pid.value,userId:uid.value,text:text.value})
+  });
+  load();
+}
+</script>
+</body></html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><body>
+<h2>Create User</h2>
+<input id="name" placeholder="Name">
+<input id="bio" placeholder="Bio">
+<button onclick="reg()">Register</button>
+<script>
+async function reg(){
+  await fetch('http://localhost:5000/users',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:name.value,bio:bio.value})
+  });
+  alert('User created');
+}
+</script>
+</body></html>
